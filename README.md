@@ -34,7 +34,7 @@
 
         - If the key (created using IP address, user agent or any unique identifiers) does not exist, create a key-value pair with the key as the identifier and the value as the rate limit threshold minus 1 (for the current request). The key would have a time to live value matching with the interval of the rate limit
 
-        - If the key is exist, the value would be **decreased by 1**. If the value is then below 1, we would **reject** the request. We may implement further optimization here (exponential backoff by extending time-to-live if the client keeps requesting after being blocked)
+        - If the key is exist, the value would be **decreased by 1**. If the value is then below 0, we would **reject** the request. We may implement further optimization here (exponential backoff by extending time-to-live if the client keeps requesting after being blocked)
 
         - The key would be automatically cleared from Redis instance after the interval ends.
 
